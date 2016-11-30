@@ -1,46 +1,46 @@
 @echo off    
-rem //è®¾ç½®å˜é‡     
-set NAME="æœ¬åœ°è¿æ¥"    
-rem //ä»¥ä¸‹å±æ€§å€¼å¯ä»¥æ ¹æ®éœ€è¦æ›´æ”¹    
+rem //ÉèÖÃ±äÁ¿     
+set NAME="±¾µØÁ¬½Ó"    
+rem //ÒÔÏÂÊôĞÔÖµ¿ÉÒÔ¸ù¾İĞèÒª¸ü¸Ä    
 set ADDR=192.168.200.82    
 set MASK=255.255.252.0    
 set GATEWAY=192.168.207.254
 set DNS1=192.168.207.254
 set DNS2=8.8.8.8    
-rem //ä»¥ä¸Šå±æ€§ä¾æ¬¡ä¸ºIPåœ°å€ã€å­ç½‘æ©ç ã€ç½‘å…³ã€é¦–é€‰DNSã€å¤‡ç”¨DNS    
+rem //ÒÔÉÏÊôĞÔÒÀ´ÎÎªIPµØÖ·¡¢×ÓÍøÑÚÂë¡¢Íø¹Ø¡¢Ê×Ñ¡DNS¡¢±¸ÓÃDNS    
     
-echo å½“å‰å¯ç”¨æ“ä½œæœ‰ï¼š    
-echo 1 è®¾ç½®ä¸ºé™æ€IP    
-echo 2 è®¾ç½®ä¸ºåŠ¨æ€IP    
-echo 3 é€€å‡º    
-echo è¯·é€‰æ‹©åå›è½¦ï¼š    
+echo µ±Ç°¿ÉÓÃ²Ù×÷ÓĞ£º    
+echo 1 ÉèÖÃÎª¾²Ì¬IP    
+echo 2 ÉèÖÃÎª¶¯Ì¬IP    
+echo 3 ÍË³ö    
+echo ÇëÑ¡Ôñºó»Ø³µ£º    
 set /p operate=    
 if %operate%==1 goto 1    
 if %operate%==2 goto 2    
 if %operate%==3 goto 3    
     
 :1    
-echo æ­£åœ¨è®¾ç½®é™æ€IPï¼Œè¯·ç¨ç­‰...    
-rem //å¯ä»¥æ ¹æ®ä½ çš„éœ€è¦æ›´æ”¹     
-echo IPåœ°å€ = %ADDR%    
-echo æ©ç  = %MASK%    
-echo ç½‘å…³ = %GATEWAY%    
+echo ÕıÔÚÉèÖÃ¾²Ì¬IP£¬ÇëÉÔµÈ...    
+rem //¿ÉÒÔ¸ù¾İÄãµÄĞèÒª¸ü¸Ä     
+echo IPµØÖ· = %ADDR%    
+echo ÑÚÂë = %MASK%    
+echo Íø¹Ø = %GATEWAY%    
 netsh interface ipv4 set address name=%NAME% source=static addr=%ADDR% mask=%MASK% gateway=%GATEWAY% gwmetric=0 >nul     
-echo é¦–é€‰DNS = %DNS1%     
+echo Ê×Ñ¡DNS = %DNS1%     
 netsh interface ipv4 set dns name=%NAME% source=static addr=%DNS1% register=PRIMARY >nul     
-echo å¤‡ç”¨DNS = %DNS2%     
+echo ±¸ÓÃDNS = %DNS2%     
 netsh interface ipv4 add dns name=%NAME% addr=%DNS2% index=2 >nul     
-echo é™æ€IPå·²è®¾ç½®ï¼    
+echo ¾²Ì¬IPÒÑÉèÖÃ£¡    
 pause    
 goto 3    
     
 :2    
-echo æ­£åœ¨è®¾ç½®åŠ¨æ€IPï¼Œè¯·ç¨ç­‰...    
-echo æ­£åœ¨ä»DHCPè‡ªåŠ¨è·å–IPåœ°å€...    
-netsh interface ip set address "æœ¬åœ°è¿æ¥" dhcp    
-echo æ­£åœ¨ä»DHCPè‡ªåŠ¨è·å–DNSåœ°å€...    
-netsh interface ip set dns "æœ¬åœ°è¿æ¥" dhcp     
-echo åŠ¨æ€IPå·²è®¾ç½®ï¼    
+echo ÕıÔÚÉèÖÃ¶¯Ì¬IP£¬ÇëÉÔµÈ...    
+echo ÕıÔÚ´ÓDHCP×Ô¶¯»ñÈ¡IPµØÖ·...    
+netsh interface ip set address "±¾µØÁ¬½Ó" dhcp    
+echo ÕıÔÚ´ÓDHCP×Ô¶¯»ñÈ¡DNSµØÖ·...    
+netsh interface ip set dns "±¾µØÁ¬½Ó" dhcp     
+echo ¶¯Ì¬IPÒÑÉèÖÃ£¡    
 pause    
 goto 3    
     
